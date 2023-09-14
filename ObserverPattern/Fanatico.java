@@ -1,4 +1,4 @@
-public class Fanatico {
+public class Fanatico implements Subscriptor {
    
     private String nombre;
     private String apellido;
@@ -9,7 +9,9 @@ public class Fanatico {
         this.nombre=nombre;    
      }
     
-    public String getNombre(){
-        return nombre;
+     @Override
+     public void actualizar(String mensaje) {
+         System.out.println(nombre + " " + apellido + " ha recibido una notificación: " + mensaje);
      }
+
     }

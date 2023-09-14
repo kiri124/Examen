@@ -4,34 +4,30 @@ import java.util.Set;
 public class Teleticket {
    
     private String nombreArtista;
-    private String fechaConierto;
-    private double precio;
+    private String fechaConcierto;
     private String categoría;
-    private int disponibilidad;
-    private Set<Fanatico> suscriptores;
+    private Set<Subscriptor> observadores;
 
-    public Teleticket(String nombreArtist, String fechaConierto, double precio, String categoría, int disponibilidad){
-
+    public Teleticket(String nombreArtista, String fechaConcierto, String categoría) {
         this.nombreArtista = nombreArtista;
-        this.fechaConierto = fechaConierto;
-        this.precio = precio;
+        this.fechaConcierto = fechaConcierto;
         this.categoría = categoría;
-        this.disponibilidad = disponibilidad;
-        this.suscriptores = new HashSet<>();
+        this.observadores = new HashSet<>();
     }
 
-    public void agregarSuscriptor(Fanatico fanatico){
-        suscriptores.add(fanatico);
+    public void agregarSubscriptor(Subscriptor observador) {
+        observadores.add(observador);
     }
 
-    public void quitarSuscriptor(Fanatico fanatico){
-        suscriptores.remove(fanatico);
+    public void quitarSubscriptor(Subscriptor observador) {
+        observadores.remove(observador);
     }
 
-    public void notificarDisponibilidad(){
-        if (fechaConierto.endsWith("-15")){
-            for (Fanatico fanatico : suscriptores){
-                System.out.println("Notificación para: " + fanatico.getNombre() + ": Entradaas disponibles para " + nombreArtista + " el" + fechaConierto + " en la categoría" + categoría + "!");
+    public void notificarDisponibilidad() {
+        if (fechaConcierto.endsWith("-15")) {
+            String mensaje = "Entradas disponibles para " + nombreArtista + " el " + fechaConcierto + " en la categoría " + categoría + "!";
+            for (Subscriptor observador : observadores) {
+                observador.actualizar(mensaje);
             }
         }
     }
